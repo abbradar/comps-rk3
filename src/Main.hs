@@ -1,9 +1,12 @@
-{-# LANGUAGE DeriveTraversable, OverloadedStrings, LambdaCase #-}
+{-# LANGUAGE DeriveFunctor, DeriveFoldable, DeriveTraversable, OverloadedStrings, LambdaCase #-}
 
+import Data.Foldable
+import Data.Traversable
 import Control.Applicative
-import Control.Monad
+import Prelude hiding (concat, mapM)
+import Control.Monad hiding (forM, forM_, mapM, mapM_)
 import Data.Char
-import Data.List
+import Data.List hiding (concat)
 import Data.Maybe
 import Data.Text (Text)
 import qualified Data.Text as T

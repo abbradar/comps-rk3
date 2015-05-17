@@ -18,7 +18,10 @@ cabal-version:       >=1.10
 executable comps-rk3
   main-is:             Main.hs
   -- other-modules:       
-  other-extensions:    DeriveTraversable, OverloadedStrings, LambdaCase
-  build-depends:       base >=4.8 && <4.9, containers >=0.5 && <0.6, transformers >=0.4 && <0.5
+  build-depends:       base >=4.7 && <4.9
+                     , containers
+                     , transformers
+                     , text
+                     , attoparsec
   hs-source-dirs:      src
   default-language:    Haskell2010
