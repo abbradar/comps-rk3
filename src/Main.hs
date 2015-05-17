@@ -78,40 +78,40 @@ statement = Stat <$> var <* char '=' <*> rhs
 source :: Parser Source
 source = many $ statement <* endOfLine
 
-class PrettyPprint a where
+class PrettyPrint a where
   pprint :: a -> String
 
-instance PrettyPprint Var where
+instance PrettyPrint Var where
   pprint (Temp i) = "_t" ++ show i
   pprint (Var n) = T.unpack n
 
-instance PrettyPprint a => PrettyPprint (RVal a) where
+instance PrettyPrint a => PrettyPrint (RVal a) where
   pprint (RVar var) = pprint var
   pprint (RConst const) = show const
 
-instance PrettyPprint Op1 where
+instance PrettyPrint Op1 where
   pprint Ref = "&"
   pprint Deref = "*"
   pprint Neg = "-"
 
-instance PrettyPprint Op2 where
+instance PrettyPrint Op2 where
   pprint Add = "+"
   pprint Mult = "*"
   pprint Subt = "-"
   pprint Div = "/"
 
-instance PrettyPprint a => PrettyPprint (ComplexRHS a) where
+instance PrettyPrint a => PrettyPrint (ComplexRHS a) where
   pprint (Complex1 op a) = pprint op ++ " " ++ pprint a
   pprint (Complex2 a op b) = pprint a ++ " " ++ pprint op ++ " " ++ pprint b
 
-instance PrettyPprint a => PrettyPprint (RHS a) where
+instance PrettyPrint a => PrettyPrint (RHS a) where
   pprint (Simple a) = pprint a
   pprint (Complex a) = pprint a
 
-instance PrettyPprint a => PrettyPprint (Statement' a) where
+instance PrettyPrint a => PrettyPrint (Statement' a) where
   pprint (Stat var rhs) = pprint var ++ " = " ++ pprint rhs
 
-instance PrettyPprint a => PrettyPprint [a] where
+instance PrettyPrint a => PrettyPrint [a] where
   pprint = concat . map ((++ "\n") . pprint)
 
 straighten :: Source -> Source
