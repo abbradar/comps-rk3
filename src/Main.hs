@@ -14,7 +14,6 @@ import Data.Map (Map)
 import qualified Data.Map as M
 import Data.Attoparsec.Text
 import Control.Monad.Trans.State
-import Debug.Trace
 
 type VarName = Text
 
